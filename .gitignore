@@ -1,0 +1,7 @@
+*.sqlite3
+*.pyc
+*.swp
+*.mo
+settings_dev.py
+.idea
+/node_modules
