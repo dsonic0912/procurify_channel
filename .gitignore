@@ -5,3 +5,9 @@
 settings_dev.py
 .idea
 /node_modules
+.DS_Store
+webpack-stats.json
+manage_dev.py
+/bundles
+webpack-stats-prod.json
+webpack-stats.json
