@@ -4,7 +4,7 @@ var BundleTracker = require('webpack-bundle-tracker')
 
 var config = require('./webpack.base.config.js')
 
-config.output.publicPath = 'http://localhost:8080/assets/bundles/'
+config.output.publicPath = 'http://localhost:3000/assets/bundles/'
 
 config.plugins = config.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),

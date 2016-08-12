@@ -2,9 +2,9 @@
   "name": "procurify_channel",
   "version": "1.0.0",
   "description": "Slack-like Channel for Procurify",
-  "main": "webpack.dev.config.js",
+  "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --config webpack.dev.config.js"
   },
   "keywords": [
     "procurify",
