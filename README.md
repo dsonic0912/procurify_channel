@@ -17,8 +17,8 @@ Requirements:
 
 Setup Steps:
 1. pip install -r requirements.txt
-2. npm install
-3. modify the manage.py or add a manage_dev.py to load settings/dev.py
-4. change the database settings to fit your environment
-4. npm start
-5. python manage.py runserver
+- npm install
+- modify the manage.py or add a manage_dev.py to load settings/dev.py
+- change the database settings to fit your environment
+- npm start
+- python manage.py runserver
