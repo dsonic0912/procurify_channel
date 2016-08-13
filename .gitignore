@@ -8,6 +8,6 @@ settings_dev.py
 .DS_Store
 webpack-stats.json
 manage_dev.py
-/bundles
+/assets/bundles
 webpack-stats-prod.json
 webpack-stats.json
