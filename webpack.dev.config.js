@@ -25,7 +25,8 @@ config.module.loaders = [
         //loaders: ["react-hot", "babel?presets[]=react,presets[]=es2015,presets[]=stage-0"],
         loader: 'babel',
         query: {
-            presets: ['es2015', 'react', 'stage-0']
+            presets: ['es2015', 'react', 'stage-0'],
+            plugins: ['transform-decorators-legacy']
         }
     },
     {
