@@ -6,8 +6,9 @@ class MessageStore {
 	@observable username = '';
 	id = Math.random();
 
-	constructor(msg) {
+	constructor(msg, username) {
 		this.message = msg;
+		this.username = username;
 	}
 }
 

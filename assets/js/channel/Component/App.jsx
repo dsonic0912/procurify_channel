@@ -1,14 +1,19 @@
 require('../../../css/lib/bootstrap/css/bootstrap.min.css');
-require('../../../css/dashboard.css');
+require('../../../css/channel/channel.css');
 
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+
 import { Grid,Row,Col } from 'react-bootstrap';
 import { Nav, NavItem } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+
 import {observable, action} from 'mobx';
 import {observer} from 'mobx-react';
+
 import MessageStore from '../Store/MessageStore';
+import MessageBox from './MessageBox';
 
 @observer
 class App extends Component {
@@ -24,38 +29,66 @@ class App extends Component {
 	@observable input = '';
 
 	@action messageReceive(msg) {
-		this.props.stores.push(new MessageStore(msg.data));
+		let messageData = JSON.parse(msg.data)
+		let message = messageData.message;
+		let username = messageData.username;
+
+		this.props.stores.push(new MessageStore(message, username));
 	}
 
 	@action onChange = (e) => {
 		this.input = e.target.value;
 	}
 
-	@action onSubmit = () => {
-		this.socket.send(this.input);
-		this.input = '';
+	@action onSubmit = (e) => {
+		console.log('submit');
+		if (e.key == 'Enter') {
+			let message = this.input;
+
+			let messageData = {
+				username: '',
+				message: message
+			};
+
+			this.socket.send(JSON.stringify(messageData));
+
+			this.input = '';
+		}
 	}
 
 	render() {
-		const stores = this.props.stores;
+		const messageStores = this.props.stores;
 
 		return (
-			<Row>
-				<Col md={2}>
-					<h1>Channe#1</h1>
+			<Row className="chat-wrap">
+				<Col xs={3} className="panel-wrap">
+					<Col xs={12} className="section-wrap" id="Contacts">
+
+						<Row className="content-wrap">
+
+							<Button className="contact">
+								<div className="media-body">
+									<h5 className="media-heading">#Vendor1</h5>
+								</div>
+							</Button>
+
+							<Button className="contact">
+								<div className="media-body">
+									<h5 className="media-heading">#Vendor2</h5>
+								</div>
+							</Button>							
+
+						</Row>
+
+					</Col>
 				</Col>
-				<Col md={10} className="main">
-					<Row>
-						<Col md={12}>
-							{ stores.map(t => <p key={t.id}>{ t.message }</p>)}
-						</Col>
-					</Row>
-					<Row>
-						<Col md={12}>
-							<FormControl onChange={this.onChange} value={this.input} componentClass="textarea" />
-							<Button onClick={this.onSubmit}>Send</Button>
-						</Col>
-					</Row>
+
+				<Col xs={9} className="panel-wrap">
+					<MessageBox 
+						messageStores={messageStores} 
+						updateInputValue={this.onChange} 
+						sendMessage={this.onSubmit}
+						inputValue={this.input} />
 				</Col>
 			</Row>
 		);
