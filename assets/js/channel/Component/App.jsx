@@ -15,18 +15,44 @@ import {observer} from 'mobx-react';
 import MessageStore from '../Store/MessageStore';
 import MessageBox from './MessageBox';
 
+import queryString from 'query-string';
+
 @observer
 class App extends Component {
+	@observable input = '';
+	@observable vendor = '';
+	@observable socket = {};
+
 	constructor() {
 		super();
-		this.socket = new WebSocket("ws://" + window.location.host + "/chat/");
+
+		let queryParams = queryString.parse(location.search);
+
+		if (Object.keys(queryParams).length > 0) {
+			this.vendor = queryParams['vendor'];
+		} else {
+			this.vendor = 'chat'
+		}
+
+		this.socket = new WebSocket("ws://" + window.location.host + "/" + this.vendor + "/");
 	}
 
 	componentDidMount() {
+		console.log('componentDidMount');
 		this.socket.onmessage = this.messageReceive.bind(this);
+
+		this.fetch();
 	}
 
-	@observable input = '';
+	@action fetch() {
+		window.fetch('/api/sample/')
+			.then(res => res.json())
+			.then(json => {
+				json.map(msg => {
+					this.props.stores.push(new MessageStore(msg.message, msg.username));
+				});
+			})
+	}
 
 	@action messageReceive(msg) {
 		let messageData = JSON.parse(msg.data)
@@ -41,7 +67,6 @@ class App extends Component {
 	}
 
 	@action onSubmit = (e) => {
-		console.log('submit');
 		if (e.key == 'Enter') {
 			let message = this.input;
 
@@ -56,6 +81,12 @@ class App extends Component {
 		}
 	}
 
+	@action vendorClicked = (e) => {
+		let clickedVendor = e.target.getAttribute('data-vendor');
+		window.location.href = '/?vendor=' + clickedVendor;
+	}
+
+
 	render() {
 		const messageStores = this.props.stores;
 
@@ -66,16 +97,12 @@ class App extends Component {
 
 						<Row className="content-wrap">
 
-							<Button className="contact">
-								<div className="media-body">
-									<h5 className="media-heading">#Vendor1</h5>
-								</div>
+							<Button className="contact" data-vendor="Vendor1" onClick={this.vendorClicked}>
+								#Vendor1
 							</Button>
 
-							<Button className="contact">
-								<div className="media-body">
-									<h5 className="media-heading">#Vendor2</h5>
-								</div>
+							<Button className="contact" data-vendor="Vendor2" onClick={this.vendorClicked}>
+								#Vendor2
 							</Button>							
 
 						</Row>

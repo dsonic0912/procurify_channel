@@ -10,6 +10,7 @@ class MessageStore {
 		this.message = msg;
 		this.username = username;
 	}
+
 }
 
 export default MessageStore;

@@ -6,4 +6,7 @@ import {observe} from 'mobx-react';
 
 const messageStores = observable([]);
 
-ReactDOM.render(<App stores={messageStores} />, document.getElementById('root'));
+ReactDOM.render(
+    <App stores={messageStores} />,
+    document.getElementById('root')
+);
