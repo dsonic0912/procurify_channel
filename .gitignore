@@ -11,3 +11,6 @@ manage_dev.py
 /assets/bundles
 webpack-stats-prod.json
 webpack-stats.json
+npm-debug.log
+dev.py
+migrations/
