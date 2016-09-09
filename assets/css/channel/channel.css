@@ -7,12 +7,14 @@ html, body {
 }
 .fill {
     height: 100%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    width:100%;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .container {
-    width: 970px !important;
+    padding-right:0;
+    padding-left:0;
 }
 
 /******************** MAIN WRAPPERS *******************/
@@ -38,8 +40,9 @@ html, body {
 }
 /* Content Wrapper */
 .content-wrap {
-    height: 90%;
+    /*height: 90%;*/
     overflow: auto;
+    margin-bottom:45px;
 }
 /* Messages Wrapper */
 .content-wrap.messages {
@@ -84,6 +87,45 @@ html, body {
     color: #333;
 }
 
+/*************** LEFT NAV **********************/
+.l-nav-container{
+    position: relative;
+    z-index: 2;
+    padding-top: 10px;
+    float: left;
+    bottom: 0;
+    width: 90px;
+    border-right: 1px solid #eee;
+    background: #424b52;
+    min-height: 100vh;
+    padding-bottom: 160px;
+    -webkit-transition: width 0.3s false, -webkit-transform 0.3s false;
+    -moz-transition: width 0.3s false false, -moz-transform 0.3s false false;
+    -o-transition: width 0.3s false false, -o-transform 0.3s false false;
+    transition: width 0.3s, transform 0.3s;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+.company-navigate{
+    /*background-image:url('../../dist/left-nav.jpg');*/
+    /*background-repeat: no-repeat;*/
+    width:80px;
+    height:516px;
+    position:absolute;
+    right:-2px;
+}
+
 
 /************* CONVERSATIONS *************/
 /* Conversation Item */
@@ -103,16 +145,41 @@ html, body {
 /******************* CONTACTS ***************/
 /* Contact Item */
 .contact {
-    padding: 21px 10px 12px;
+    width: 90%;
+    margin:5px 15px;
+    background:white;
+    color:dimgrey;
     border-bottom: 1px solid #ddd;
-    width: 100%;
-    display: inline-block;
+    display: block;
+    text-align: left;
+    padding-left:15px;
 
     transition: background-color 0.5s ease;
+    border:none;
 }
+
+.contact-header{
+    font-size:16px;
+    font-weight:bold;
+    color: #999999;
+    border-bottom:1px solid #999999;
+    margin-bottom:15px;
+    margin-left:12px;
+    padding:5px;
+}
+
 /* Contact Properties */
-.contact.btn:hover {
+.contact.btn:hover, .contact.btn.active {
     background-color: whitesmoke;
+    color:green;
+}
+
+.contact.btn.highlight{
+    font-weight:bold;
+}
+
+#contacts-container{
+    float:left
 }
 
 /**************** MESSAGES *****************/
@@ -134,6 +201,9 @@ html, body {
     color:#bfbfbf;
 }
 
+#messages-container{
+    float:left;
+}
 
 /*************** SEND MESSAGE **********************/
 /* Send Message Item */

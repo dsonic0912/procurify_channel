@@ -92,25 +92,57 @@ class App extends Component {
 
 		return (
 			<Row className="chat-wrap">
-				<Col xs={3} className="panel-wrap">
+				<Col xs={3} className="panel-wrap" id="contacts-container">
 					<Col xs={12} className="section-wrap" id="Contacts">
 
 						<Row className="content-wrap">
 
-							<Button className="contact" data-vendor="Vendor1" onClick={this.vendorClicked}>
-								#Vendor1
+							<div className="contact-header">Channels <small>(5)</small></div>
+
+							<Button className="contact active" data-vendor="Vendor1" onClick={this.vendorClicked}>
+								#All Questions
 							</Button>
 
 							<Button className="contact" data-vendor="Vendor2" onClick={this.vendorClicked}>
-								#Vendor2
-							</Button>							
+								#Orders
+							</Button>
+
+							<Button className="contact" data-vendor="Vendor3" onClick={this.vendorClicked}>
+								#Shipping
+							</Button>
+
+							<Button className="contact" data-vendor="Vendor4" onClick={this.vendorClicked}>
+								#Return an Item
+							</Button>
+
+							<Button className="contact" data-vendor="Vendor5" onClick={this.vendorClicked}>
+								#Request a Quote
+							</Button>
+
+						</Row>
+
+						<Row className="content-wrap">
+
+							<div className="contact-header">Clients Order <small>(15)</small></div>
+
+							<Button className="contact highlight" data-vendor="Quotes" onClick={this.vendorClicked}>
+								#Quotes <small>(2)</small>
+							</Button>
+
+							<Button className="contact" data-vendor="Vendor2" onClick={this.vendorClicked}>
+								#Orders
+							</Button>
+
+							<Button className="contact" data-vendor="Vendor3" onClick={this.vendorClicked}>
+								#Purchase Orders
+							</Button>
 
 						</Row>
 
 					</Col>
 				</Col>
 
-				<Col xs={9} className="panel-wrap">
+				<Col xs={9} className="panel-wrap" id="messages-container">
 					<MessageBox 
 						messageStores={messageStores} 
 						updateInputValue={this.onChange} 

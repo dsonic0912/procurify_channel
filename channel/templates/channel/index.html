@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load webpack_static from webpack_loader %}
 {% load render_bundle from webpack_loader %}
 {% load staticfiles %}
 
@@ -6,9 +7,17 @@
 <!--3rd Party Fonts & Icons-->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% webpack_static 'channel.js' %}">
 {% endblock %}
 
 {% block content %}
+    <header id="top"></header>
+
+    <div class="l-nav-container">
+        <div class="company-navigate"><img src="http://localhost:3000/assets/dist/left-nav.jpg" alt=""></div>
+    </div>
+
 	<div id="root" class="container fill"></div>
+
 	{% render_bundle 'channel' %}
 {% endblock %}
